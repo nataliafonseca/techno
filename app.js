@@ -2,11 +2,7 @@ const vm = new Vue({
   el: "#app",
   data: {
     produtos: [],
-    notebook: {},
-    smartphone: {},
-    smartwatch: {},
-    speaker: {},
-    tablet: {},
+    produto: false,
   },
   filters: {
     formatarPreco(valor) {
@@ -23,6 +19,23 @@ const vm = new Vue({
         .then((json) => {
           this.produtos = json;
         });
+    },
+    fetchProduto(id) {
+      fetch(`./api/produtos/${id}/dados.json`)
+        .then((response) => response.json())
+        .then((json) => {
+          this.produto = json;
+        });
+    },
+    abrirModal(id) {
+      this.fetchProduto(id);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
+    fecharModal(event) {
+      if (event.target === event.currentTarget) this.produto = false;
     },
   },
   created() {
