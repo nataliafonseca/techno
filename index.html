@@ -19,7 +19,7 @@
       <div class="produto" v-for="produto in produtos" :key="produto.id">
         <img class="produto_img" :src="produto.img" :alt="produto.nome" />
         <div class="produto_info">
-          <span class="produto_preco">{{produto.preco}}</span>
+          <span class="produto_preco">{{produto.preco | formatarPreco}}</span>
           <h2 class="produto_titulo">{{produto.nome}}</h2>
         </div>
       </div>

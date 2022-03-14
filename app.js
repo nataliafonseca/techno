@@ -8,6 +8,14 @@ const vm = new Vue({
     speaker: {},
     tablet: {},
   },
+  filters: {
+    formatarPreco(valor) {
+      return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+    },
+  },
   methods: {
     fetchProdutos() {
       fetch("./api/produtos.json")
